@@ -4,11 +4,19 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\SocialLinkResource\Pages;
 use App\Models\SocialLink;
-use Filament\Forms;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
-use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class SocialLinkResource extends Resource
@@ -25,19 +33,19 @@ class SocialLinkResource extends Resource
             ->schema([
                 Section::make('Social Link Details')
                     ->schema([
-                        Forms\Components\TextInput::make('platform')
+                        TextInput::make('platform')
                             ->required()
                             ->maxLength(255),
-                        Forms\Components\TextInput::make('url')
+                        TextInput::make('url')
                             ->url()
                             ->required(),
-                        Forms\Components\FileUpload::make('icon')
+                        FileUpload::make('icon')
                             ->disk('public')
                             ->directory('socials'),
-                        Forms\Components\TextInput::make('sort_order')
+                        TextInput::make('sort_order')
                             ->numeric()
                             ->default(0),
-                        Forms\Components\Toggle::make('is_active')
+                        Toggle::make('is_active')
                             ->default(true),
                     ])->columns(2),
             ]);
@@ -47,20 +55,20 @@ class SocialLinkResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('icon')->disk('public'),
-                Tables\Columns\TextColumn::make('platform')->searchable(),
-                Tables\Columns\TextColumn::make('url')->searchable(),
-                Tables\Columns\TextColumn::make('sort_order')->sortable(),
-                Tables\Columns\IconColumn::make('is_active')->boolean(),
+                ImageColumn::make('icon')->disk('public'),
+                TextColumn::make('platform')->searchable(),
+                TextColumn::make('url')->searchable(),
+                TextColumn::make('sort_order')->sortable(),
+                IconColumn::make('is_active')->boolean(),
             ])
             ->defaultSort('sort_order', 'asc')
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                EditAction::make(),
+                DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }

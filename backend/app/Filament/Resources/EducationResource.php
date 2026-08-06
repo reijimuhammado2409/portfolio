@@ -4,11 +4,21 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\EducationResource\Pages;
 use App\Models\Education;
-use Filament\Forms;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
-use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class EducationResource extends Resource
@@ -25,28 +35,28 @@ class EducationResource extends Resource
             ->schema([
                 Section::make('Education Details')
                     ->schema([
-                        Forms\Components\TextInput::make('institution')
+                        TextInput::make('institution')
                             ->required()
                             ->maxLength(255),
-                        Forms\Components\TextInput::make('major')
+                        TextInput::make('major')
                             ->required()
                             ->maxLength(255),
-                        Forms\Components\TextInput::make('degree')
+                        TextInput::make('degree')
                             ->maxLength(255),
-                        Forms\Components\TextInput::make('gpa')
+                        TextInput::make('gpa')
                             ->numeric()
                             ->step(0.01),
-                        Forms\Components\DatePicker::make('start_date'),
-                        Forms\Components\DatePicker::make('end_date'),
-                        Forms\Components\Textarea::make('description')
+                        DatePicker::make('start_date'),
+                        DatePicker::make('end_date'),
+                        Textarea::make('description')
                             ->rows(3),
-                        Forms\Components\FileUpload::make('logo')
+                        FileUpload::make('logo')
                             ->disk('public')
                             ->directory('educations'),
-                        Forms\Components\TextInput::make('sort_order')
+                        TextInput::make('sort_order')
                             ->numeric()
                             ->default(0),
-                        Forms\Components\Toggle::make('is_active')
+                        Toggle::make('is_active')
                             ->default(true),
                     ])->columns(2),
             ]);
@@ -56,23 +66,23 @@ class EducationResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('logo')->disk('public'),
-                Tables\Columns\TextColumn::make('institution')->searchable(),
-                Tables\Columns\TextColumn::make('major')->searchable(),
-                Tables\Columns\TextColumn::make('degree'),
-                Tables\Columns\TextColumn::make('start_date')->date(),
-                Tables\Columns\TextColumn::make('end_date')->date(),
-                Tables\Columns\TextColumn::make('sort_order')->sortable(),
-                Tables\Columns\IconColumn::make('is_active')->boolean(),
+                ImageColumn::make('logo')->disk('public'),
+                TextColumn::make('institution')->searchable(),
+                TextColumn::make('major')->searchable(),
+                TextColumn::make('degree'),
+                TextColumn::make('start_date')->date(),
+                TextColumn::make('end_date')->date(),
+                TextColumn::make('sort_order')->sortable(),
+                IconColumn::make('is_active')->boolean(),
             ])
             ->defaultSort('sort_order', 'asc')
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                EditAction::make(),
+                DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }

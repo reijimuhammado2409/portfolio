@@ -4,11 +4,14 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\SiteSettingResource\Pages;
 use App\Models\SiteSetting;
-use Filament\Forms;
+use Filament\Actions\EditAction;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
-use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class SiteSettingResource extends Resource
@@ -30,44 +33,44 @@ class SiteSettingResource extends Resource
             ->schema([
                 Section::make('General Information')
                     ->schema([
-                        Forms\Components\TextInput::make('site_name')
+                        TextInput::make('site_name')
                             ->required()
                             ->maxLength(255),
-                        Forms\Components\Textarea::make('site_description')
+                        Textarea::make('site_description')
                             ->rows(3),
                     ]),
                 Section::make('Branding & Files')
                     ->schema([
-                        Forms\Components\FileUpload::make('logo')
+                        FileUpload::make('logo')
                             ->disk('public')
                             ->directory('settings'),
-                        Forms\Components\FileUpload::make('favicon')
+                        FileUpload::make('favicon')
                             ->disk('public')
                             ->directory('settings'),
-                        Forms\Components\FileUpload::make('cv_file')
+                        FileUpload::make('cv_file')
                             ->disk('public')
                             ->directory('cv'),
                     ])->columns(3),
                 Section::make('Contact Details')
                     ->schema([
-                        Forms\Components\TextInput::make('email')
+                        TextInput::make('email')
                             ->email(),
-                        Forms\Components\TextInput::make('phone'),
-                        Forms\Components\Textarea::make('address')
+                        TextInput::make('phone'),
+                        Textarea::make('address')
                             ->rows(2),
                     ])->columns(2),
                 Section::make('Social Links (Fallback)')
                     ->schema([
-                        Forms\Components\TextInput::make('github_url')->url(),
-                        Forms\Components\TextInput::make('linkedin_url')->url(),
-                        Forms\Components\TextInput::make('instagram_url')->url(),
-                        Forms\Components\TextInput::make('whatsapp_url')->url(),
+                        TextInput::make('github_url')->url(),
+                        TextInput::make('linkedin_url')->url(),
+                        TextInput::make('instagram_url')->url(),
+                        TextInput::make('whatsapp_url')->url(),
                     ])->columns(2),
                 Section::make('SEO Configuration')
                     ->schema([
-                        Forms\Components\TextInput::make('seo_title'),
-                        Forms\Components\Textarea::make('seo_description')->rows(2),
-                        Forms\Components\Textarea::make('seo_keywords')->rows(2),
+                        TextInput::make('seo_title'),
+                        Textarea::make('seo_description')->rows(2),
+                        Textarea::make('seo_keywords')->rows(2),
                     ]),
             ]);
     }
@@ -76,13 +79,13 @@ class SiteSettingResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('site_name')->searchable(),
-                Tables\Columns\TextColumn::make('email')->searchable(),
-                Tables\Columns\TextColumn::make('phone'),
-                Tables\Columns\TextColumn::make('updated_at')->dateTime()->sortable(),
+                TextColumn::make('site_name')->searchable(),
+                TextColumn::make('email')->searchable(),
+                TextColumn::make('phone'),
+                TextColumn::make('updated_at')->dateTime()->sortable(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                EditAction::make(),
             ]);
     }
 

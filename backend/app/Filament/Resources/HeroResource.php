@@ -4,11 +4,15 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\HeroResource\Pages;
 use App\Models\Hero;
-use Filament\Forms;
+use Filament\Actions\EditAction;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
-use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class HeroResource extends Resource
@@ -30,23 +34,23 @@ class HeroResource extends Resource
             ->schema([
                 Section::make('Hero Header')
                     ->schema([
-                        Forms\Components\TextInput::make('headline')
+                        TextInput::make('headline')
                             ->required()
                             ->maxLength(255),
-                        Forms\Components\TextInput::make('subheadline')
+                        TextInput::make('subheadline')
                             ->maxLength(255),
-                        Forms\Components\Textarea::make('description')
+                        Textarea::make('description')
                             ->rows(3),
-                        Forms\Components\FileUpload::make('hero_image')
+                        FileUpload::make('hero_image')
                             ->disk('public')
                             ->directory('heroes'),
                     ]),
                 Section::make('Call To Action Buttons')
                     ->schema([
-                        Forms\Components\TextInput::make('primary_button_text'),
-                        Forms\Components\TextInput::make('primary_button_url'),
-                        Forms\Components\TextInput::make('secondary_button_text'),
-                        Forms\Components\TextInput::make('secondary_button_url'),
+                        TextInput::make('primary_button_text'),
+                        TextInput::make('primary_button_url'),
+                        TextInput::make('secondary_button_text'),
+                        TextInput::make('secondary_button_url'),
                     ])->columns(2),
             ]);
     }
@@ -55,13 +59,13 @@ class HeroResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('hero_image')->disk('public'),
-                Tables\Columns\TextColumn::make('headline')->searchable(),
-                Tables\Columns\TextColumn::make('subheadline')->searchable(),
-                Tables\Columns\TextColumn::make('updated_at')->dateTime()->sortable(),
+                ImageColumn::make('hero_image')->disk('public'),
+                TextColumn::make('headline')->searchable(),
+                TextColumn::make('subheadline')->searchable(),
+                TextColumn::make('updated_at')->dateTime()->sortable(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                EditAction::make(),
             ]);
     }
 

@@ -4,11 +4,15 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\AboutResource\Pages;
 use App\Models\About;
-use Filament\Forms;
+use Filament\Actions\EditAction;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
-use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class AboutResource extends Resource
@@ -30,13 +34,13 @@ class AboutResource extends Resource
             ->schema([
                 Section::make('About Information')
                     ->schema([
-                        Forms\Components\TextInput::make('title')
+                        TextInput::make('title')
                             ->required()
                             ->maxLength(255),
-                        Forms\Components\Textarea::make('description')
+                        Textarea::make('description')
                             ->required()
                             ->rows(5),
-                        Forms\Components\FileUpload::make('image')
+                        FileUpload::make('image')
                             ->disk('public')
                             ->directory('abouts'),
                     ]),
@@ -47,12 +51,12 @@ class AboutResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('image')->disk('public'),
-                Tables\Columns\TextColumn::make('title')->searchable(),
-                Tables\Columns\TextColumn::make('updated_at')->dateTime()->sortable(),
+                ImageColumn::make('image')->disk('public'),
+                TextColumn::make('title')->searchable(),
+                TextColumn::make('updated_at')->dateTime()->sortable(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                EditAction::make(),
             ]);
     }
 
