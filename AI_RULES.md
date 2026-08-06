@@ -1,7 +1,10 @@
 # AI RULES
 
 ## General
-
+- Always read PROJECT_CONTEXT.md before generating code.
+- Treat PROJECT_CONTEXT.md as the current project state.
+- Generate code only for the current task.
+- If requirements are unclear, ask before making assumptions.
 - Follow existing project architecture.
 - Never modify project structure unless requested.
 - Never rename folders.
@@ -9,6 +12,8 @@
 - Follow the existing ERD exactly.
 - Do not add unnecessary packages.
 - Ask before changing dependencies.
+- Do not modify the approved database design unless explicitly requested.
+- Do not create files outside the requested task.
 
 ---
 
@@ -20,6 +25,8 @@
 - Follow Laravel naming conventions.
 - Use Form Request Validation if needed.
 - Use Resource Controllers when appropriate.
+- Follow the approved ERD exactly.
+- Use Laravel best practices.
 
 ---
 
@@ -66,3 +73,5 @@ chore:
 - Reuse components.
 - Avoid duplicate code.
 - Explain generated code when requested.
+- Do not overengineer simple features.
+- Prefer readability over clever code.
