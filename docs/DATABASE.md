@@ -69,7 +69,7 @@ Table skills {
   is_active boolean
   created_at timestamp
   updated_at timestamp
-}
+}git push origin main
 
 Table social_links {
   id bigint [pk, increment]
