@@ -23,8 +23,8 @@ export const mockLandingPageData = {
   },
   site_settings: {
     id: 1,
-    site_name: "Muhammad Reiji Portfolio",
-    site_description: "Editorial Dark Modern Portfolio of Muhammad Reiji",
+    site_name: "Muhammad Fachri Fahrezy Portfolio",
+    site_description: "Editorial Dark Modern Portfolio of Muhammad Fachri Fahrezy",
     logo: null,
     favicon: null,
     cv_file: "#",
@@ -35,8 +35,8 @@ export const mockLandingPageData = {
     linkedin_url: "https://linkedin.com/in/muhammad-reiji",
     instagram_url: "https://instagram.com/reijimuhammad",
     whatsapp_url: "https://wa.me/6281234567890",
-    seo_title: "Muhammad Reiji | Full Stack Developer",
-    seo_description: "Portfolio of Full Stack Developer Muhammad Reiji",
+    seo_title: "Muhammad Fachri Fahrezy | Full Stack Developer",
+    seo_description: "Portfolio of Full Stack Developer Muhammad Fachri Fahrezy",
     seo_keywords: "Laravel, React, Tailwind, Full Stack, Portfolio",
   },
   social_links: [
@@ -61,8 +61,10 @@ export const mockTechStacks = [
   { id: 4, name: "PHP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" },
   { id: 5, name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
   { id: 6, name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-  { id: 7, name: "Filament CMS", icon: "https://filamentphp.com/images/icon.svg" },
+  { id: 7, name: "Filament CMS", icon: "https://raw.githubusercontent.com/filamentphp/filament/3.x/art/logo.svg" },
   { id: 8, name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+  { id: 9, name: "Flutter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" },
+  { id: 10, name: "Firebase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
 ];
 
 export const mockProjects = [
