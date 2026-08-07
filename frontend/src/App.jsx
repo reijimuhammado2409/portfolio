@@ -3,6 +3,7 @@ import Navbar from './components/layout/Navbar';
 import HeroSection from './components/sections/HeroSection';
 import AboutSection from './components/sections/AboutSection';
 import ProjectsSection from './components/sections/ProjectsSection';
+import ExperienceSection from './components/sections/ExperienceSection';
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
 
         {/* Projects Section */}
         <ProjectsSection />
+
+        {/* Experience & Education Section */}
+        <ExperienceSection />
 
       </div>
     </ReactLenis>
