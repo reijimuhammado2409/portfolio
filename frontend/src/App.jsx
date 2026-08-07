@@ -2,6 +2,7 @@ import { ReactLenis } from 'lenis/react';
 import Navbar from './components/layout/Navbar';
 import HeroSection from './components/sections/HeroSection';
 import AboutSection from './components/sections/AboutSection';
+import ProjectsSection from './components/sections/ProjectsSection';
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
 
         {/* About Section */}
         <AboutSection />
+
+        {/* Projects Section */}
+        <ProjectsSection />
 
       </div>
     </ReactLenis>
