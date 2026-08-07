@@ -1,16 +1,21 @@
 import React from 'react';
 import { ReactLenis } from 'lenis/react';
-import { mockLandingPageData, mockProjects, mockExperiences, mockEducations } from './data/mockData';
+import Navbar from './components/layout/Navbar';
+import { mockLandingPageData } from './data/mockData';
 
 function App() {
   return (
     <ReactLenis root options={{ lerp: 0.1, duration: 1.2, smoothWheel: true }}>
-      <div className="min-h-screen bg-[#0d0d0f] text-[#f4f4f6] font-body selection:bg-white selection:text-black">
-        {/* Sprint 3 Kickoff Placeholder Container */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-20 sm:py-32 flex flex-col items-center justify-center text-center">
+      <div className="min-h-screen bg-[#0d0d0f] text-[#f4f4f6] font-body selection:bg-white selection:text-black pt-28">
+        
+        {/* Floating Glassmorphism Navbar */}
+        <Navbar />
+
+        {/* Hero Section Container */}
+        <main className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-20 sm:py-32 flex flex-col items-center justify-center text-center">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400 mb-6">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            Sprint 3 Kickoff — Portfolio Ready
+            Sprint 3 — Floating Navbar Active
           </span>
           
           <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.05] text-[#f4f4f6] max-w-4xl">
@@ -35,7 +40,7 @@ function App() {
               {mockLandingPageData.hero.secondary_button_text}
             </a>
           </div>
-        </div>
+        </main>
       </div>
     </ReactLenis>
   );
